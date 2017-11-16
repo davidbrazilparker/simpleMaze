@@ -1,8 +1,9 @@
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class maze{
-	private List<String> colors = new ArrayList<String>(Arrays.asList("red","orange","yellow","green","cyan","blue","indigo","violet","purple","magenta","pink", "brown","white","gray","black"));
+	private ArrayList<String> colors = new ArrayList<String>(Arrays.asList("red","orange","yellow","green","cyan","blue","indigo","violet","purple","magenta","pink", "brown","white","gray","black"));
 	private int length;
 	private int doors;
 	private mazeNode start;

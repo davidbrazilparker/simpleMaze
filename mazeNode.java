@@ -37,5 +37,6 @@ public class mazeNode{
 		for(int i = 0; i<this.children.size(); i++){
 			result.append("\n" + "Child " + i + "'s name: "  +  this.children.get(i));
 		}
+		return result.toString();
 	}
 }
