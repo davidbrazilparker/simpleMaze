@@ -6,16 +6,16 @@ public class mazeNode{
 	private List<mazeNode> children = new ArrayList<mazeNode>();
 	
 	public mazeNode(String nameParam, mazeNode parentParam){
-		this.parent = parentParam;
 		this.name = nameParam;
+		this.parent = parentParam;
 	}
 
 	public List<mazeNode> getChildren(){
 		return this.children;
 	}
 	
-	public void addChild(){
-		this.children.add(new mazeNode(this));
+	public void addChild(mazeNode childParam){
+		this.getChildren().add(childParam);
 	}
 
 	public String getName(){
