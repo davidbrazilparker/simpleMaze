@@ -2,8 +2,7 @@ import java.util.*;
 
 
 public class maze{
-	int randomNum = ThreadLocalRandom.current().nextInt(min, max+1);	
-	private final List<String> colors = new ArrayList<String>(Arrays.asList({"red","orange","yellow","green","cyan","blue","indigo","violet","purple","magenta","pink", "brown","white","gray","black"}));
+	private List<String> colors = new ArrayList<String>(Arrays.asList("red","orange","yellow","green","cyan","blue","indigo","violet","purple","magenta","pink", "brown","white","gray","black"));
 	private int length;
 	private int doors;
 	private mazeNode start;
@@ -16,10 +15,9 @@ public class maze{
 	
 	public mazeNode createMazeTree(){
 		mazeNode current = null;
-		List<String> colorCopy = new ArrayList<String>(colors);
-		mazeNode root = new mazeNode(null, this.getRandomUniqueColor());
+		mazeNode root = new mazeNode(this.getRandomUniqueColor(), null);
 		current = root;
-		while(colorCopy.size() > 0){
+		while(colors.size() > 0){
 			this.createChildren(current);
 			current = this.getLeafNode(root);
 		}
@@ -28,7 +26,7 @@ public class maze{
 	
 	private void createChildren(mazeNode nodeParam){
 		for(int i = 0; i<this.getDoors(); i++){
-			mazeNode someChild = new mazeNode(nodeParam, this.getRandomUniqueColor());
+			mazeNode someChild = new mazeNode(this.getRandomUniqueColor(), nodeParam);
 			nodeParam.addChild(someChild);
 		}	
 	}
@@ -36,16 +34,16 @@ public class maze{
 	private mazeNode getLeafNode(mazeNode startPoint){
 		mazeNode current = startPoint;
 		while(current.hasChildren()){
-			current = current.getChildren.get(getRandomNumber(2));	
+			current = current.getChildren().get(getRandomNumber(2));	
 		}
 		return current;
 	}
 
 	public String getRandomUniqueColor(){
-		int index = this.getRandomNumber(colorCopy.size());
-		String value = colorCopy.get(index);
-		colorCopy.remove(index);
-		colorCopy.trimToSize();
+		int index = this.getRandomNumber(colors.size());
+		String value = colors.get(index);
+		colors.remove(index);
+		colors.trimToSize();
 		return value;
 	}
 

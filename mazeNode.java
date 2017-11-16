@@ -14,6 +14,10 @@ public class mazeNode{
 		return this.children;
 	}
 	
+	public boolean hasChildren(){
+		return (this.getChildren().size() > 0) ? true : false;
+	}
+
 	public void addChild(mazeNode childParam){
 		this.getChildren().add(childParam);
 	}
