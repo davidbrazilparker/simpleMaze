@@ -3,6 +3,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class maze{
+	private final String top = "+---------/Back\\---------+\n";
+	private final String filler = "|                        |\n";
+	private final String bottom = "+----\\1/----------\\2/----+\n";
+
 	private ArrayList<String> colors = new ArrayList<String>(Arrays.asList("red","orange","yellow","green","cyan","blue","indigo","violet","purple","magenta","pink", "brown","white","gray","black"));
 	private int length;
 	private int doors;
@@ -13,7 +17,7 @@ public class maze{
 		this.doors = doorsParam;
 		this.currentNode = createMazeTree();
 	}
-	
+
 	public mazeNode createMazeTree(){
 		mazeNode current = null;
 		mazeNode root = new mazeNode(this.getRandomUniqueColor(), null);
@@ -22,20 +26,20 @@ public class maze{
 			this.createChildren(current);
 			current = this.getLeafNode(root);
 		}
-		return root;	
+		return root;
 	}
-	
+
 	private void createChildren(mazeNode nodeParam){
 		for(int i = 0; i<this.getDoors(); i++){
 			mazeNode someChild = new mazeNode(this.getRandomUniqueColor(), nodeParam);
 			nodeParam.addChild(someChild);
-		}	
+		}
 	}
 
 	private mazeNode getLeafNode(mazeNode startPoint){
 		mazeNode current = startPoint;
 		while(current.hasChildren()){
-			current = current.getChildren().get(getRandomNumber(2));	
+			current = current.getChildren().get(getRandomNumber(2));
 		}
 		return current;
 	}
@@ -55,7 +59,7 @@ public class maze{
 	public int getDoors(){
 		return this.doors;
 	}
-	
+
 	public mazeNode getCurrentNode(){
 		return this.currentNode;
 	}
@@ -80,11 +84,33 @@ public class maze{
 			this.setCurrentNode(parent);
 			return parent;
 		}
-		return this.getCurrentNode();	
+		return this.getCurrentNode();
+	}
+
+	public void printNode(){
+		System.out.println(this.getCurrentNode().toString());
 	}
 
 	public void printCurrentRoom(){
-		System.out.println(this.getCurrentNode().toString());
+		StringBuilder room = new StringBuilder();
+		String roomName = this.getCurrentNode().getName();
+		room.append(top);
+		room.append(filler);
+		room.append("|");
+		int spacesTotal = 23 - roomName.length();
+		int spacesLeft = (spacesTotal/2)+1;
+		int spacesRight = (spacesTotal/2)+(spacesTotal%2);
+		for(int i = 0; i<spacesLeft; i++){
+			room.append(" ");
+		}
+		room.append(roomName);
+		for(int i = 0; i<spacesRight; i++){
+			room.append(" ");
+		}
+		room.append("|\n");
+		room.append(filler);
+		room.append(bottom);
+		System.out.println(room.toString());
 	}
 
 }
