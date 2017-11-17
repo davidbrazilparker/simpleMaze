@@ -6,12 +6,12 @@ public class maze{
 	private ArrayList<String> colors = new ArrayList<String>(Arrays.asList("red","orange","yellow","green","cyan","blue","indigo","violet","purple","magenta","pink", "brown","white","gray","black"));
 	private int length;
 	private int doors;
-	private mazeNode start;
+	private mazeNode currentNode;
 
 	public maze(int lengthParam, int doorsParam){
 		this.length = lengthParam;
 		this.doors = doorsParam;
-		this.start = createMazeTree();
+		this.currentNode = createMazeTree();
 	}
 	
 	public mazeNode createMazeTree(){
@@ -55,6 +55,36 @@ public class maze{
 	public int getDoors(){
 		return this.doors;
 	}
+	
+	public mazeNode getCurrentNode(){
+		return this.currentNode;
+	}
 
+	public void setCurrentNode(mazeNode nodeParam){
+		this.currentNode = nodeParam;
+	}
+
+	public mazeNode getChild(int i){
+		List<mazeNode> children = this.getCurrentNode().getChildren();
+		if(children.size()>0){
+			mazeNode child = children.get(i);
+			this.setCurrentNode(child);
+			return child;
+		}
+		return this.getCurrentNode();
+	}
+
+	public mazeNode getParentNode(){
+		mazeNode parent = this.getCurrentNode().getParent();
+		if(parent != null){
+			this.setCurrentNode(parent);
+			return parent;
+		}
+		return this.getCurrentNode();	
+	}
+
+	public void printCurrentRoom(){
+		System.out.println(this.getCurrentNode().toString());
+	}
 
 }

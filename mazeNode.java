@@ -3,11 +3,12 @@ public class mazeNode{
 	
 	private String name;
 	private mazeNode parent;
-	private List<mazeNode> children = new ArrayList<mazeNode>();
+	private List<mazeNode> children;
 	
 	public mazeNode(String nameParam, mazeNode parentParam){
 		this.name = nameParam;
 		this.parent = parentParam;
+		this.children = new ArrayList<mazeNode>();
 	}
 
 	public List<mazeNode> getChildren(){
@@ -29,13 +30,16 @@ public class mazeNode{
 	public void setName(String nameParam){
 		this.name = nameParam;
 	}
+	
+	public mazeNode getParent(){
+		return this.parent;
+	}
 
 	public String toString(){
 		StringBuilder result = new StringBuilder();
-		result.append("Parent mazeNode name: " + this.parent.getName()+ "\n");
-		result.append("Current mazeNode name: " + this.name);
+		result.append("\nCurrent mazeNode name: " + this.getName());
 		for(int i = 0; i<this.children.size(); i++){
-			result.append("\n" + "Child " + i + "'s name: "  +  this.children.get(i));
+			result.append("\n" + "Child " + i + "'s name: "  +  this.children.get(i).getName());
 		}
 		return result.toString();
 	}
