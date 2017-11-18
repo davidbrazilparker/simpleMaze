@@ -3,14 +3,14 @@ A simple maze game for the Unix command line!
 
 # How to install/run:
 
-    Clone the repository to your local machine -
-        $ git clone https://github.com/davidbrazilparker/simpleMaze.git
+Clone the repository to your local machine -
+    $ git clone https://github.com/davidbrazilparker/simpleMaze.git
 
-    Compile the mainmethod file -
-        $ javac mainmethod.java
+Compile the mainmethod file -
+    $ javac mainmethod.java
 
-    Run the mainmethod file -
-        $ java mainmethod
+Run the mainmethod file -
+    $ java mainmethod
 
 # How to play:
 
@@ -34,7 +34,7 @@ A simple maze game for the Unix command line!
 
 This game is meant to be extremely easy right now. If you'd like updates please check back soon and do a git pull from your local repository.
 
-To-Do List:
+# To-Do List:
 
 * Create additional mazes with varied difficulties, lengths, and more colors!
 
