@@ -109,7 +109,7 @@ public class maze{
 		for(int i = 0; i<spacesLeft; i++){
 			room.append(" ");
 		}
-		room.append(roomName);
+		room.append(roomName.toUpperCase());
 		for(int i = 0; i<spacesRight; i++){
 			room.append(" ");
 		}
@@ -136,13 +136,14 @@ public class maze{
 			this.printCurrentRoom();
 			return (this.getCurrentNode().getWinner());
 		}
-		if(input.toLowerCase()=="back") {
+		if(input.toLowerCase().equals("back")) {
 			if(this.getCurrentNode().getParent()==null){ 
 				System.out.println("You can't exit the maze from here!");
 				this.printCurrentRoom();
 				return false;  
 			}
 			this.setCurrentNode(this.getCurrentNode().getParent());
+			this.printCurrentRoom();
 			return false;
 		}			
 		System.out.println("Please choose one of the doors in the room.");
