@@ -3,13 +3,16 @@ A simple maze game for the Unix command line!
 
 # How to install/run:
 
-Clone the repository to your local machine -
+* Clone the repository to your local machine -
+
     $ git clone https://github.com/davidbrazilparker/simpleMaze.git
 
-Compile the mainmethod file -
+* Compile the mainmethod file -
+
     $ javac mainmethod.java
 
-Run the mainmethod file -
+* Run the mainmethod file -
+
     $ java mainmethod
 
 # How to play:
