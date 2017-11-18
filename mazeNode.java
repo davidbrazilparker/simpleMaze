@@ -4,11 +4,13 @@ public class mazeNode{
 	private String name;
 	private mazeNode parent;
 	private List<mazeNode> children;
+	private boolean winner;
 	
 	public mazeNode(String nameParam, mazeNode parentParam){
 		this.name = nameParam;
 		this.parent = parentParam;
 		this.children = new ArrayList<mazeNode>();
+		this.winner = false;
 	}
 
 	public List<mazeNode> getChildren(){
@@ -29,6 +31,14 @@ public class mazeNode{
 
 	public void setName(String nameParam){
 		this.name = nameParam;
+	}
+
+	public boolean getWinner(){
+		return this.winner;
+	}
+
+	public void setWinner(boolean winParam){
+		this.winner = winParam;
 	}
 	
 	public mazeNode getParent(){

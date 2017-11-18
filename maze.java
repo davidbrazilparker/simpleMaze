@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class maze{
 	private final String top = "+---------/Back\\---------+\n";
+	private final String start =  "+------------------------+\n";
 	private final String filler = "|                        |\n";
 	private final String bottom = "+----\\1/----------\\2/----+\n";
 
@@ -26,6 +27,7 @@ public class maze{
 			this.createChildren(current);
 			current = this.getLeafNode(root);
 		}
+		this.getLeafNode(root).setWinner(true); 
 		return root;
 	}
 
@@ -94,7 +96,11 @@ public class maze{
 	public void printCurrentRoom(){
 		StringBuilder room = new StringBuilder();
 		String roomName = this.getCurrentNode().getName();
-		room.append(top);
+		if(this.getCurrentNode().getParent()==null){ 
+			room.append(start); 
+		} else {
+			room.append(top);
+		}
 		room.append(filler);
 		room.append("|");
 		int spacesTotal = 23 - roomName.length();
@@ -109,8 +115,38 @@ public class maze{
 		}
 		room.append("|\n");
 		room.append(filler);
-		room.append(bottom);
+		if(this.getCurrentNode().hasChildren()){
+			room.append(bottom);
+		} else {
+			room.append(start);
+		}
 		System.out.println(room.toString());
+	}
+
+	public boolean checkMove(String input){
+		mazeNode current = this.getCurrentNode();
+		if(input.equals("1")||input.equals("2")){
+			int index = Integer.parseInt(input);
+			if(!current.hasChildren()){
+				System.out.println("You've walked into the wall...");
+				return false;
+			}
+			mazeNode child = this.getCurrentNode().getChildren().get(index-1);
+			this.setCurrentNode(child);
+			this.printCurrentRoom();
+			return (this.getCurrentNode().getWinner());
+		}
+		if(input.toLowerCase()=="back") {
+			if(this.getCurrentNode().getParent()==null){ 
+				System.out.println("You can't exit the maze from here!");
+				this.printCurrentRoom();
+				return false;  
+			}
+			this.setCurrentNode(this.getCurrentNode().getParent());
+			return false;
+		}			
+		System.out.println("Please choose one of the doors in the room.");
+		return false;
 	}
 
 }
